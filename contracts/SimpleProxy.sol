@@ -46,8 +46,8 @@ contract Proxy is ProxyStorage {
         address _impl = implementation;
 
         assembly {
-        let ptr := mload(0x40)
-        calldatacopy(ptr, 0, calldatasize())
+        let ptr := mload(0x40) // Load me the transfer function (If trasnfer was called)
+        calldatacopy(ptr, 0, calldatasize()) // Copy function that you want to execute
         let result := delegatecall(gas(), _impl, ptr, calldatasize(), 0, 0)
         let size := returndatasize()
         returndatacopy(ptr, 0, size)

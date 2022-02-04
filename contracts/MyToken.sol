@@ -10,8 +10,8 @@ contract MyToken is Initializable, ERC20Upgradeable, OwnableUpgradeable, UUPSUpg
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() initializer {}
 
-    function initialize() initializer public {
-        __ERC20_init("MyToken", "MTK");
+    function initialize() public virtual initializer {
+        __ERC20_init("MyTokenLOL", "MTK");
         __Ownable_init();
         __UUPSUpgradeable_init();
         _mint(msg.sender, 1000000 * 10 ** decimals());
@@ -20,6 +20,7 @@ contract MyToken is Initializable, ERC20Upgradeable, OwnableUpgradeable, UUPSUpg
     function _authorizeUpgrade(address newImplementation)
         internal
         onlyOwner
+        virtual
         override
     {}
 }
